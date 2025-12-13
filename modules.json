@@ -1,0 +1,7 @@
+[
+  { "id": 1, "title": "Google Workspace", "desc": "Email, Drive & Docs", "link": "https://google.com", "icon": "ph-google-logo", "theme": 2 },
+  { "id": 2, "title": "Salesforce", "desc": "CRM and Sales Pipeline", "link": "https://salesforce.com", "icon": "ph-cloud", "theme": 0 },
+  { "id": 3, "title": "HR Portal", "desc": "Employee Handbook & Payroll", "link": "#", "icon": "ph-users", "theme": 4 },
+  { "id": 4, "title": "Slack", "desc": "Team Communication", "link": "https://slack.com", "icon": "ph-slack-logo", "theme": 3 },
+  { "id": 5, "title": "GitHub", "desc": "Source Code Repositories", "link": "https://github.com", "icon": "ph-github-logo", "theme": 1 }
+]
