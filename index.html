@@ -20,11 +20,7 @@
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        gray: {
-                            850: '#1f2937',
-                            900: '#111827', 
-                            950: '#030712',
-                        }
+                        gray: { 850: '#1f2937', 900: '#111827', 950: '#030712' }
                     }
                 }
             }
@@ -35,25 +31,17 @@
         body { 
             background-color: #030712; 
             color: #f3f4f6;
-            /* Prevent text selection */
-            user-select: none; 
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            user-select: none; /* Prevent text selection */
         }
-        
         .card-anim { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .card-anim:hover { 
             transform: translateY(-4px);
             box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.15);
             border-color: rgba(99, 102, 241, 0.4);
         }
-
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #111827; }
         ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
-
         .modal { transition: opacity 0.2s ease-in-out, visibility 0.2s; }
         .modal-active { overflow: hidden; }
     </style>
@@ -64,30 +52,23 @@
     <header class="fixed w-full top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row h-auto md:h-20 items-center justify-between py-4 md:py-0 gap-4">
-                
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center text-white">
                         <i class="ph ph-squares-four text-xl"></i>
                     </div>
                     <span class="text-xl font-bold tracking-tight text-white">Module<span class="text-indigo-500">Hub</span></span>
                 </div>
-
                 <div class="flex w-full md:w-auto items-center gap-3">
                     <div class="relative flex-grow md:w-64 group">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="ph ph-magnifying-glass text-gray-500 group-focus-within:text-indigo-400 transition-colors"></i>
                         </div>
                         <input type="text" id="searchInput" 
-                            class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                            class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-all"
                             placeholder="Find a module...">
                     </div>
-
-                    <button id="btnAdd" onclick="toggleModal('modal-add')" class="hidden items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-900/20">
-                        <i class="ph ph-plus-circle text-lg"></i>
-                        <span class="hidden sm:inline">Add</span>
-                    </button>
-
-                    <button id="btnAuth" onclick="toggleAdmin()" class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors" title="Admin Login">
+                    <!-- Buttons hidden for clean look, Admin only -->
+                    <button id="btnAuth" onclick="toggleAdmin()" class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
                         <i id="iconAuth" class="ph ph-lock-key text-lg"></i>
                     </button>
                 </div>
@@ -99,72 +80,41 @@
     <main class="flex-grow pt-32 pb-10 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center py-20 text-gray-500">
+                <i class="ph ph-spinner animate-spin text-3xl mb-2"></i>
+                <p>Loading modules...</p>
+            </div>
+            <!-- Empty State -->
             <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
-                <div class="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mb-4 border border-gray-800">
-                    <i class="ph ph-planet text-4xl text-gray-600"></i>
-                </div>
+                <i class="ph ph-planet text-4xl text-gray-600 mb-4"></i>
                 <h3 class="text-lg font-medium text-white">No modules found</h3>
-                <p class="text-gray-500 mt-1 max-w-xs mx-auto">We couldn't find anything matching your search.</p>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="border-t border-gray-800 bg-gray-950 py-8">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500 gap-4">
-            <p>&copy; 2025 Module Portal. All rights reserved.</p>
-            <button id="btnReset" onclick="resetData()" class="hidden text-red-500 hover:text-red-400 hover:underline transition-colors">
-                Factory Reset Data
-            </button>
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
+            <p>&copy; 2025 Portal. Managed via GitHub.</p>
         </div>
     </footer>
 
-    <!-- ADD MODAL -->
-    <div id="modal-add" class="modal opacity-0 invisible fixed inset-0 z-50 flex items-center justify-center">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="toggleModal('modal-add')"></div>
-        <div class="relative bg-gray-900 border border-gray-700 w-full max-w-md mx-4 rounded-xl shadow-2xl shadow-black transform transition-all scale-100 p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-bold text-white">Add New Module</h3>
-                <button onclick="toggleModal('modal-add')" class="text-gray-400 hover:text-white transition"><i class="ph ph-x text-xl"></i></button>
-            </div>
-            <form id="formAdd" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Module Name</label>
-                    <input type="text" id="inpName" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Name">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Target URL</label>
-                    <input type="url" id="inpLink" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="https://...">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Description</label>
-                    <textarea id="inpDesc" rows="3" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Description"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg transition-all shadow-lg shadow-indigo-900/50 mt-2">Create Module</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- LOGIN MODAL -->
+    <!-- Login Modal -->
     <div id="modal-login" class="modal opacity-0 invisible fixed inset-0 z-50 flex items-center justify-center">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="toggleModal('modal-login')"></div>
         <div class="relative bg-gray-900 border border-gray-700 w-full max-w-sm mx-4 rounded-xl shadow-2xl p-6 text-center">
-            <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-400">
-                <i class="ph ph-shield-check text-2xl"></i>
-            </div>
             <h3 class="text-lg font-bold text-white mb-2">Admin Access</h3>
-            <p class="text-sm text-gray-400 mb-6">Enter password to manage.</p>
-            <input type="password" id="inpPass" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-center tracking-widest focus:outline-none focus:border-indigo-500 mb-4" placeholder="••••">
-            <button onclick="login()" class="w-full bg-white text-gray-900 hover:bg-gray-200 font-bold py-2.5 rounded-lg transition-colors">Unlock</button>
+            <p class="text-xs text-gray-400 mb-4">Note: Edits here are local. To update globally, edit modules.json in GitHub.</p>
+            <input type="password" id="inpPass" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-center mb-4 focus:outline-none focus:border-indigo-500" placeholder="••••">
+            <button onclick="login()" class="w-full bg-white text-gray-900 font-bold py-2.5 rounded-lg">Unlock</button>
         </div>
     </div>
 
     <script>
-        // CONFIG
-        const STORAGE_KEY = 'portal_data_dark_v1';
         const ADMIN_PASS = 'Software5966#';
+        const JSON_FILE = 'modules.json'; // The file on GitHub
         
-        const ICONS = ['ph-rocket', 'ph-globe', 'ph-cube', 'ph-database', 'ph-chart-pie', 'ph-code', 'ph-cloud', 'ph-shield', 'ph-envelope'];
         const THEMES = [
             { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20' },
             { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20' },
@@ -174,12 +124,30 @@
             { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/20' },
         ];
 
-        let modules = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
-            { id: 1, title: "Sales Analytics", desc: "Q3 Performance & Revenue", link: "#", icon: "ph-chart-line-up", theme: 0 },
-            { id: 2, title: "Google Workspace", desc: "Email, Drive & Docs", link: "https://google.com", icon: "ph-google-logo", theme: 2 },
-            { id: 3, title: "Server Status", desc: "Monitor infrastructure", link: "#", icon: "ph-hard-drives", theme: 1 }
-        ];
+        let modules = [];
         let isAdmin = false;
+
+        // --- FETCH DATA FROM GITHUB FILE ---
+        async function loadModules() {
+            try {
+                // 1. Fetch from modules.json
+                const response = await fetch(JSON_FILE);
+                if (!response.ok) throw new Error("JSON not found");
+                const cloudData = await response.json();
+                
+                // 2. Load LocalStorage (Optional: for local overrides)
+                const localData = JSON.parse(localStorage.getItem('my_local_modules')) || [];
+                
+                // 3. Merge (Cloud data first, then local)
+                modules = [...cloudData, ...localData];
+                
+                document.getElementById('loadingState').classList.add('hidden');
+                render();
+            } catch (error) {
+                console.error("Error loading modules:", error);
+                document.getElementById('loadingState').innerHTML = `<p class='text-red-500'>Error loading ${JSON_FILE}.<br>Make sure the file exists in the repo.</p>`;
+            }
+        }
 
         function render() {
             const grid = document.getElementById('grid');
@@ -190,7 +158,7 @@
             
             const filtered = modules.filter(m => 
                 m.title.toLowerCase().includes(searchVal) || 
-                m.desc.toLowerCase().includes(searchVal)
+                (m.desc && m.desc.toLowerCase().includes(searchVal))
             );
 
             if (filtered.length === 0) {
@@ -199,16 +167,8 @@
                 emptyState.classList.add('hidden');
                 filtered.forEach(mod => {
                     const theme = THEMES[mod.theme] || THEMES[0];
-                    const adminControls = isAdmin ? `
-                        <button onclick="removeModule(${mod.id}, event)" 
-                            class="absolute top-4 right-4 z-20 p-2 rounded-full bg-gray-800 text-gray-400 hover:text-red-400 hover:bg-gray-700 transition-colors border border-gray-700 opacity-0 group-hover:opacity-100">
-                            <i class="ph ph-trash"></i>
-                        </button>
-                    ` : '';
-
                     const html = `
                         <div class="relative group h-full">
-                            ${adminControls}
                             <a href="${mod.link}" target="_blank" class="card-anim block h-full bg-gray-900 border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
                                 <div class="flex justify-between items-start mb-5">
                                     <div class="w-12 h-12 rounded-lg ${theme.bg} ${theme.border} border flex items-center justify-center">
@@ -226,48 +186,12 @@
             }
         }
 
-        function save() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(modules));
-            render();
-        }
-
-        document.getElementById('formAdd').addEventListener('submit', (e) => {
-            e.preventDefault();
-            if(!isAdmin) return;
-            const newItem = {
-                id: Date.now(),
-                title: document.getElementById('inpName').value,
-                desc: document.getElementById('inpDesc').value,
-                link: document.getElementById('inpLink').value,
-                icon: ICONS[Math.floor(Math.random() * ICONS.length)],
-                theme: Math.floor(Math.random() * THEMES.length)
-            };
-            modules.unshift(newItem);
-            save();
-            e.target.reset();
-            toggleModal('modal-add');
-        });
-
-        function removeModule(id, event) {
-            event.preventDefault(); event.stopPropagation();
-            if(confirm('Delete this module?')) {
-                modules = modules.filter(m => m.id !== id);
-                save();
-            }
-        }
-
-        function resetData() {
-            if(confirm('Reset all data?')) {
-                localStorage.removeItem(STORAGE_KEY);
-                location.reload();
-            }
-        }
-
+        // --- AUTH ---
         function toggleAdmin() {
             if(isAdmin) {
                 isAdmin = false;
-                updateUI();
-                render();
+                document.getElementById('iconAuth').classList.replace('ph-sign-out', 'ph-lock-key');
+                document.getElementById('btnAuth').classList.remove('bg-red-500/10', 'text-red-400');
             } else {
                 document.getElementById('inpPass').value = '';
                 toggleModal('modal-login');
@@ -276,35 +200,14 @@
         }
 
         function login() {
-            const pass = document.getElementById('inpPass').value;
-            if(pass === ADMIN_PASS) {
+            if(document.getElementById('inpPass').value === ADMIN_PASS) {
                 isAdmin = true;
                 toggleModal('modal-login');
-                updateUI();
-                render();
+                alert("Logged in.\n\nTo add modules PERMANENTLY, please edit the 'modules.json' file in your GitHub repository.");
+                document.getElementById('iconAuth').classList.replace('ph-lock-key', 'ph-sign-out');
+                document.getElementById('btnAuth').classList.add('bg-red-500/10', 'text-red-400');
             } else {
-                const input = document.getElementById('inpPass');
-                input.classList.add('border-red-500', 'text-red-500');
-                setTimeout(() => input.classList.remove('border-red-500', 'text-red-500'), 500);
-            }
-        }
-
-        function updateUI() {
-            const btnAdd = document.getElementById('btnAdd');
-            const btnReset = document.getElementById('btnReset');
-            const iconAuth = document.getElementById('iconAuth');
-            const btnAuth = document.getElementById('btnAuth');
-
-            if(isAdmin) {
-                btnAdd.classList.remove('hidden'); btnAdd.classList.add('flex');
-                btnReset.classList.remove('hidden');
-                iconAuth.classList.replace('ph-lock-key', 'ph-sign-out');
-                btnAuth.classList.add('bg-red-500/10', 'text-red-400', 'border-red-500/20');
-            } else {
-                btnAdd.classList.add('hidden'); btnAdd.classList.remove('flex');
-                btnReset.classList.add('hidden');
-                iconAuth.classList.replace('ph-sign-out', 'ph-lock-key');
-                btnAuth.classList.remove('bg-red-500/10', 'text-red-400', 'border-red-500/20');
+                alert("Wrong password");
             }
         }
 
@@ -312,38 +215,129 @@
             const el = document.getElementById(id);
             if(el.classList.contains('invisible')) {
                 el.classList.remove('invisible', 'opacity-0');
-                document.body.classList.add('modal-active');
             } else {
                 el.classList.add('invisible', 'opacity-0');
-                document.body.classList.remove('modal-active');
             }
         }
 
+        // Init
         document.getElementById('searchInput').addEventListener('input', render);
         document.getElementById('inpPass').addEventListener('keypress', (e) => { if(e.key === 'Enter') login(); });
-        render();
+        loadModules(); // Start Fetch
 
-        /* =========================================
-           DISABLE VIEW SOURCE / INSPECT
-           ========================================= */
-        
-        // 1. Disable Right Click
+        // Security Disable
         document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // 2. Disable Keyboard Shortcuts (F12, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+S)
         document.onkeydown = function(e) {
-            // F12
-            if(e.keyCode == 123) {
-                return false;
-            }
-            // Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+U (View Source), Ctrl+S (Save)
-            if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) {
-                return false;
-            }
-            if(e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) {
-                return false;
-            }
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) return false;
+            if(e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) return false;
         }
     </script>
 </body>
 </html>
+
+
+
+<!-- 
+=======================================================================
+BACKUP DATA (ARCHIVED MODULES)
+Copy and paste these into modules.json when you need them.
+=======================================================================
+
+  { "id": 6, "title": "Jira", "desc": "Issue & Project Tracking", "link": "https://atlassian.com", "icon": "ph-check-square", "theme": 0 },
+  { "id": 7, "title": "Figma", "desc": "UI/UX Design Tools", "link": "https://figma.com", "icon": "ph-paint-brush", "theme": 5 },
+  { "id": 8, "title": "AWS Console", "desc": "Cloud Infrastructure", "link": "https://aws.amazon.com", "icon": "ph-amazon-logo", "theme": 3 },
+  { "id": 9, "title": "ChatGPT", "desc": "AI Assistant", "link": "https://chat.openai.com", "icon": "ph-robot", "theme": 1 },
+  { "id": 10, "title": "Notion", "desc": "Knowledge Base & Notes", "link": "https://notion.so", "icon": "ph-notebook", "theme": 4 },
+  { "id": 11, "title": "Zoom", "desc": "Video Conferencing", "link": "https://zoom.us", "icon": "ph-video-camera", "theme": 0 },
+  { "id": 12, "title": "Analytics", "desc": "Google Analytics Dashboard", "link": "https://analytics.google.com", "icon": "ph-chart-line-up", "theme": 2 },
+  { "id": 13, "title": "Stripe", "desc": "Payment Gateway", "link": "https://stripe.com", "icon": "ph-credit-card", "theme": 5 },
+  { "id": 14, "title": "Vercel", "desc": "Frontend Deployments", "link": "https://vercel.com", "icon": "ph-triangle", "theme": 1 },
+  { "id": 15, "title": "Docker Hub", "desc": "Container Registry", "link": "https://hub.docker.com", "icon": "ph-cube", "theme": 0 },
+  { "id": 16, "title": "GitLab", "desc": "DevOps Platform", "link": "https://gitlab.com", "icon": "ph-gitlab-logo-simple", "theme": 3 },
+  { "id": 17, "title": "LinkedIn", "desc": "Professional Network", "link": "https://linkedin.com", "icon": "ph-linkedin-logo", "theme": 0 },
+  { "id": 18, "title": "YouTube Studio", "desc": "Video Content Management", "link": "https://studio.youtube.com", "icon": "ph-youtube-logo", "theme": 4 },
+  { "id": 19, "title": "Dropbox", "desc": "File Storage", "link": "https://dropbox.com", "icon": "ph-dropbox-logo", "theme": 2 },
+  { "id": 20, "title": "Trello", "desc": "Kanban Boards", "link": "https://trello.com", "icon": "ph-kanban", "theme": 0 },
+  { "id": 21, "title": "Mailchimp", "desc": "Email Marketing", "link": "https://mailchimp.com", "icon": "ph-envelope-open", "theme": 2 },
+  { "id": 22, "title": "Spotify", "desc": "Office Playlist", "link": "https://spotify.com", "icon": "ph-spotify-logo", "theme": 1 },
+  { "id": 23, "title": "Reddit", "desc": "Tech News & Discussion", "link": "https://reddit.com", "icon": "ph-reddit-logo", "theme": 3 },
+  { "id": 24, "title": "Stack Overflow", "desc": "Developer Q&A", "link": "https://stackoverflow.com", "icon": "ph-stack-overflow-logo", "theme": 3 },
+  { "id": 25, "title": "Asana", "desc": "Task Management", "link": "https://asana.com", "icon": "ph-list-checks", "theme": 4 },
+  { "id": 26, "title": "HubSpot", "desc": "Inbound Marketing", "link": "https://hubspot.com", "icon": "ph-users-three", "theme": 5 },
+  { "id": 27, "title": "Sentry", "desc": "Error Tracking", "link": "https://sentry.io", "icon": "ph-bug", "theme": 4 },
+  { "id": 28, "title": "Datadog", "desc": "Server Monitoring", "link": "https://datadoghq.com", "icon": "ph-monitor", "theme": 5 },
+  { "id": 29, "title": "Canva", "desc": "Graphic Design", "link": "https://canva.com", "icon": "ph-palette", "theme": 2 },
+  { "id": 30, "title": "Twitch", "desc": "Live Streaming", "link": "https://twitch.tv", "icon": "ph-twitch-logo", "theme": 5 },
+  { "id": 31, "title": "Cloudflare", "desc": "DNS & Security", "link": "https://cloudflare.com", "icon": "ph-cloud-fog", "theme": 3 },
+  { "id": 32, "title": "DigitalOcean", "desc": "VPS Hosting", "link": "https://digitalocean.com", "icon": "ph-waves", "theme": 0 },
+  { "id": 33, "title": "Heroku", "desc": "App Platform", "link": "https://heroku.com", "icon": "ph-rocket", "theme": 5 },
+  { "id": 34, "title": "Monday.com", "desc": "Work OS", "link": "https://monday.com", "icon": "ph-calendar-check", "theme": 1 },
+  { "id": 35, "title": "Zendesk", "desc": "Customer Support", "link": "https://zendesk.com", "icon": "ph-life-buoy", "theme": 1 },
+  { "id": 36, "title": "Intercom", "desc": "Live Chat", "link": "https://intercom.com", "icon": "ph-chat-circle-dots", "theme": 0 },
+  { "id": 37, "title": "Typeform", "desc": "Online Forms", "link": "https://typeform.com", "icon": "ph-selection", "theme": 2 },
+  { "id": 38, "title": "Basecamp", "desc": "Project Management", "link": "https://basecamp.com", "icon": "ph-camp-fire", "theme": 2 },
+  { "id": 39, "title": "Miro", "desc": "Online Whiteboard", "link": "https://miro.com", "icon": "ph-presentation", "theme": 4 },
+  { "id": 40, "title": "Whimsical", "desc": "Flowcharts", "link": "https://whimsical.com", "icon": "ph-tree-structure", "theme": 5 },
+  { "id": 41, "title": "Grafana", "desc": "Metrics Dashboard", "link": "#", "icon": "ph-chart-bar", "theme": 3 },
+  { "id": 42, "title": "Prometheus", "desc": "Alerts & Monitoring", "link": "#", "icon": "ph-fire", "theme": 3 },
+  { "id": 43, "title": "Jenkins", "desc": "CI/CD Pipeline", "link": "#", "icon": "ph-gear", "theme": 0 },
+  { "id": 44, "title": "SonarQube", "desc": "Code Quality", "link": "#", "icon": "ph-code-check", "theme": 0 },
+  { "id": 45, "title": "Postman", "desc": "API Testing", "link": "https://postman.com", "icon": "ph-paper-plane-tilt", "theme": 3 },
+  { "id": 46, "title": "Swagger", "desc": "API Documentation", "link": "#", "icon": "ph-file-code", "theme": 1 },
+  { "id": 47, "title": "MongoDB Atlas", "desc": "NoSQL Database", "link": "#", "icon": "ph-database", "theme": 1 },
+  { "id": 48, "title": "Redis Cloud", "desc": "Caching Layer", "link": "#", "icon": "ph-lightning", "theme": 4 },
+  { "id": 49, "title": "Firebase", "desc": "Backend as a Service", "link": "https://firebase.google.com", "icon": "ph-flame", "theme": 4 },
+  { "id": 50, "title": "Supabase", "desc": "Open Source Backend", "link": "https://supabase.com", "icon": "ph-bolt", "theme": 1 },
+  { "id": 51, "title": "Gmail", "desc": "Corporate Email", "link": "https://gmail.com", "icon": "ph-envelope", "theme": 4 },
+  { "id": 52, "title": "Outlook", "desc": "Microsoft Email", "link": "https://outlook.com", "icon": "ph-microsoft-outlook-logo", "theme": 0 },
+  { "id": 53, "title": "Teams", "desc": "Microsoft Teams", "link": "https://teams.microsoft.com", "icon": "ph-users-four", "theme": 5 },
+  { "id": 54, "title": "Skype", "desc": "Legacy Calls", "link": "#", "icon": "ph-phone", "theme": 0 },
+  { "id": 55, "title": "Discord", "desc": "Community Server", "link": "https://discord.com", "icon": "ph-discord-logo", "theme": 5 },
+  { "id": 56, "title": "WhatsApp Web", "desc": "Direct Messaging", "link": "https://web.whatsapp.com", "icon": "ph-whatsapp-logo", "theme": 1 },
+  { "id": 57, "title": "Telegram", "desc": "Secure Messaging", "link": "https://web.telegram.org", "icon": "ph-telegram-logo", "theme": 0 },
+  { "id": 58, "title": "PayPal", "desc": "Finance & Invoices", "link": "https://paypal.com", "icon": "ph-currency-dollar", "theme": 0 },
+  { "id": 59, "title": "Quickbooks", "desc": "Accounting", "link": "https://quickbooks.intuit.com", "icon": "ph-calculator", "theme": 1 },
+  { "id": 60, "title": "Xero", "desc": "Accounting Software", "link": "https://xero.com", "icon": "ph-receipt", "theme": 0 },
+  { "id": 61, "title": "Expensify", "desc": "Expense Reports", "link": "https://expensify.com", "icon": "ph-credit-card", "theme": 2 },
+  { "id": 62, "title": "Workday", "desc": "Human Capital", "link": "#", "icon": "ph-briefcase", "theme": 0 },
+  { "id": 63, "title": "BambooHR", "desc": "HR Management", "link": "#", "icon": "ph-plant", "theme": 1 },
+  { "id": 64, "title": "Gusto", "desc": "Payroll & Benefits", "link": "https://gusto.com", "icon": "ph-wallet", "theme": 2 },
+  { "id": 65, "title": "Udemy", "desc": "Learning Portal", "link": "https://udemy.com", "icon": "ph-student", "theme": 4 },
+  { "id": 66, "title": "Coursera", "desc": "Online Courses", "link": "https://coursera.org", "icon": "ph-graduation-cap", "theme": 0 },
+  { "id": 67, "title": "Pluralsight", "desc": "Tech Skills", "link": "https://pluralsight.com", "icon": "ph-code", "theme": 5 },
+  { "id": 68, "title": "Medium", "desc": "Tech Blogs", "link": "https://medium.com", "icon": "ph-article", "theme": 2 },
+  { "id": 69, "title": "Dev.to", "desc": "Developer Community", "link": "https://dev.to", "icon": "ph-brackets-curly", "theme": 2 },
+  { "id": 70, "title": "HackerNews", "desc": "Tech News", "link": "https://news.ycombinator.com", "icon": "ph-newspaper", "theme": 3 },
+  { "id": 71, "title": "Product Hunt", "desc": "New Products", "link": "https://producthunt.com", "icon": "ph-cat", "theme": 3 },
+  { "id": 72, "title": "Dribbble", "desc": "Design Inspiration", "link": "https://dribbble.com", "icon": "ph-dribbble-logo", "theme": 4 },
+  { "id": 73, "title": "Behance", "desc": "Portfolios", "link": "https://behance.net", "icon": "ph-behance-logo", "theme": 0 },
+  { "id": 74, "title": "Unsplash", "desc": "Stock Photos", "link": "https://unsplash.com", "icon": "ph-image", "theme": 5 },
+  { "id": 75, "title": "Pexels", "desc": "Free Video/Img", "link": "https://pexels.com", "icon": "ph-camera", "theme": 1 },
+  { "id": 76, "title": "IconJar", "desc": "Icon Management", "link": "#", "icon": "ph-star", "theme": 5 },
+  { "id": 77, "title": "FontAwesome", "desc": "Icon Library", "link": "https://fontawesome.com", "icon": "ph-flag", "theme": 0 },
+  { "id": 78, "title": "Google Fonts", "desc": "Typography", "link": "https://fonts.google.com", "icon": "ph-text-t", "theme": 2 },
+  { "id": 79, "title": "Codepen", "desc": "Frontend Playground", "link": "https://codepen.io", "icon": "ph-codepen-logo", "theme": 0 },
+  { "id": 80, "title": "JSFiddle", "desc": "Code Sandbox", "link": "https://jsfiddle.net", "icon": "ph-code-simple", "theme": 0 },
+  { "id": 81, "title": "Speedtest", "desc": "Check Bandwidth", "link": "https://speedtest.net", "icon": "ph-speedometer", "theme": 3 },
+  { "id": 82, "title": "WhoIs", "desc": "Domain Lookup", "link": "https://who.is", "icon": "ph-globe", "theme": 2 },
+  { "id": 83, "title": "TinyPNG", "desc": "Image Compression", "link": "https://tinypng.com", "icon": "ph-file-image", "theme": 1 },
+  { "id": 84, "title": "JSON Lint", "desc": "Validator", "link": "https://jsonlint.com", "icon": "ph-check-circle", "theme": 1 },
+  { "id": 85, "title": "Base64", "desc": "Encoder/Decoder", "link": "https://base64encode.org", "icon": "ph-arrows-left-right", "theme": 4 },
+  { "id": 86, "title": "Cron Guru", "desc": "Cron Scheduler", "link": "https://crontab.guru", "icon": "ph-clock", "theme": 4 },
+  { "id": 87, "title": "Regex101", "desc": "Regex Tester", "link": "https://regex101.com", "icon": "ph-magic-wand", "theme": 5 },
+  { "id": 88, "title": "StackBlitz", "desc": "Online IDE", "link": "https://stackblitz.com", "icon": "ph-lightning", "theme": 5 },
+  { "id": 89, "title": "Codespaces", "desc": "GitHub Cloud Dev", "link": "https://github.com/codespaces", "icon": "ph-cloud-check", "theme": 5 },
+  { "id": 90, "title": "Localhost", "desc": "Dev Server 8080", "link": "http://localhost:8080", "icon": "ph-laptop", "theme": 0 },
+  { "id": 91, "title": "Staging", "desc": "Staging Environment", "link": "#", "icon": "ph-flask", "theme": 2 },
+  { "id": 92, "title": "Production", "desc": "Live Site", "link": "#", "icon": "ph-globe-hemisphere-west", "theme": 4 },
+  { "id": 93, "title": "Intranet", "desc": "Company Wiki", "link": "#", "icon": "ph-book-bookmark", "theme": 2 },
+  { "id": 94, "title": "IT Helpdesk", "desc": "Submit Ticket", "link": "#", "icon": "ph-ticket", "theme": 3 },
+  { "id": 95, "title": "VPN", "desc": "Secure Access", "link": "#", "icon": "ph-lock-key", "theme": 4 },
+  { "id": 96, "title": "Time Clock", "desc": "Shift Management", "link": "#", "icon": "ph-watch", "theme": 5 },
+  { "id": 97, "title": "Calendar", "desc": "Company Events", "link": "#", "icon": "ph-calendar", "theme": 0 },
+  { "id": 98, "title": "Maps", "desc": "Office Locations", "link": "https://maps.google.com", "icon": "ph-map-pin", "theme": 1 },
+  { "id": 99, "title": "Weather", "desc": "Local Forecast", "link": "https://weather.com", "icon": "ph-sun", "theme": 4 },
+  { "id": 100, "title": "System Status", "desc": "Uptime Monitor", "link": "#", "icon": "ph-activity", "theme": 3 }
+
+-->
