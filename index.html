@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Portal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        gray: {
+                            850: '#1f2937',
+                            900: '#111827', 
+                            950: '#030712',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #030712; 
+            color: #f3f4f6;
+            /* Prevent text selection */
+            user-select: none; 
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        .card-anim { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-anim:hover { 
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+        .modal { transition: opacity 0.2s ease-in-out, visibility 0.2s; }
+        .modal-active { overflow: hidden; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="fixed w-full top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row h-auto md:h-20 items-center justify-between py-4 md:py-0 gap-4">
+                
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center text-white">
+                        <i class="ph ph-squares-four text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white">Module<span class="text-indigo-500">Hub</span></span>
+                </div>
+
+                <div class="flex w-full md:w-auto items-center gap-3">
+                    <div class="relative flex-grow md:w-64 group">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="ph ph-magnifying-glass text-gray-500 group-focus-within:text-indigo-400 transition-colors"></i>
+                        </div>
+                        <input type="text" id="searchInput" 
+                            class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                            placeholder="Find a module...">
+                    </div>
+
+                    <button id="btnAdd" onclick="toggleModal('modal-add')" class="hidden items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-900/20">
+                        <i class="ph ph-plus-circle text-lg"></i>
+                        <span class="hidden sm:inline">Add</span>
+                    </button>
+
+                    <button id="btnAuth" onclick="toggleAdmin()" class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors" title="Admin Login">
+                        <i id="iconAuth" class="ph ph-lock-key text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="flex-grow pt-32 pb-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
+                <div class="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mb-4 border border-gray-800">
+                    <i class="ph ph-planet text-4xl text-gray-600"></i>
+                </div>
+                <h3 class="text-lg font-medium text-white">No modules found</h3>
+                <p class="text-gray-500 mt-1 max-w-xs mx-auto">We couldn't find anything matching your search.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-gray-950 py-8">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500 gap-4">
+            <p>&copy; 2025 Module Portal. All rights reserved.</p>
+            <button id="btnReset" onclick="resetData()" class="hidden text-red-500 hover:text-red-400 hover:underline transition-colors">
+                Factory Reset Data
+            </button>
+        </div>
+    </footer>
+
+    <!-- ADD MODAL -->
+    <div id="modal-add" class="modal opacity-0 invisible fixed inset-0 z-50 flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="toggleModal('modal-add')"></div>
+        <div class="relative bg-gray-900 border border-gray-700 w-full max-w-md mx-4 rounded-xl shadow-2xl shadow-black transform transition-all scale-100 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-bold text-white">Add New Module</h3>
+                <button onclick="toggleModal('modal-add')" class="text-gray-400 hover:text-white transition"><i class="ph ph-x text-xl"></i></button>
+            </div>
+            <form id="formAdd" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Module Name</label>
+                    <input type="text" id="inpName" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Name">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Target URL</label>
+                    <input type="url" id="inpLink" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="https://...">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Description</label>
+                    <textarea id="inpDesc" rows="3" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Description"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg transition-all shadow-lg shadow-indigo-900/50 mt-2">Create Module</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal opacity-0 invisible fixed inset-0 z-50 flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="toggleModal('modal-login')"></div>
+        <div class="relative bg-gray-900 border border-gray-700 w-full max-w-sm mx-4 rounded-xl shadow-2xl p-6 text-center">
+            <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-400">
+                <i class="ph ph-shield-check text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Admin Access</h3>
+            <p class="text-sm text-gray-400 mb-6">Enter password to manage.</p>
+            <input type="password" id="inpPass" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-center tracking-widest focus:outline-none focus:border-indigo-500 mb-4" placeholder="••••">
+            <button onclick="login()" class="w-full bg-white text-gray-900 hover:bg-gray-200 font-bold py-2.5 rounded-lg transition-colors">Unlock</button>
+        </div>
+    </div>
+
+    <script>
+        // CONFIG
+        const STORAGE_KEY = 'portal_data_dark_v1';
+        const ADMIN_PASS = 'Software5966#';
+        
+        const ICONS = ['ph-rocket', 'ph-globe', 'ph-cube', 'ph-database', 'ph-chart-pie', 'ph-code', 'ph-cloud', 'ph-shield', 'ph-envelope'];
+        const THEMES = [
+            { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20' },
+            { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20' },
+            { bg: 'bg-violet-500/10', text: 'text-violet-400', border: 'border-violet-500/20' },
+            { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/20' },
+            { bg: 'bg-pink-500/10', text: 'text-pink-400', border: 'border-pink-500/20' },
+            { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/20' },
+        ];
+
+        let modules = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
+            { id: 1, title: "Sales Analytics", desc: "Q3 Performance & Revenue", link: "#", icon: "ph-chart-line-up", theme: 0 },
+            { id: 2, title: "Google Workspace", desc: "Email, Drive & Docs", link: "https://google.com", icon: "ph-google-logo", theme: 2 },
+            { id: 3, title: "Server Status", desc: "Monitor infrastructure", link: "#", icon: "ph-hard-drives", theme: 1 }
+        ];
+        let isAdmin = false;
+
+        function render() {
+            const grid = document.getElementById('grid');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const emptyState = document.getElementById('emptyState');
+            
+            grid.innerHTML = '';
+            
+            const filtered = modules.filter(m => 
+                m.title.toLowerCase().includes(searchVal) || 
+                m.desc.toLowerCase().includes(searchVal)
+            );
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                filtered.forEach(mod => {
+                    const theme = THEMES[mod.theme] || THEMES[0];
+                    const adminControls = isAdmin ? `
+                        <button onclick="removeModule(${mod.id}, event)" 
+                            class="absolute top-4 right-4 z-20 p-2 rounded-full bg-gray-800 text-gray-400 hover:text-red-400 hover:bg-gray-700 transition-colors border border-gray-700 opacity-0 group-hover:opacity-100">
+                            <i class="ph ph-trash"></i>
+                        </button>
+                    ` : '';
+
+                    const html = `
+                        <div class="relative group h-full">
+                            ${adminControls}
+                            <a href="${mod.link}" target="_blank" class="card-anim block h-full bg-gray-900 border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                                <div class="flex justify-between items-start mb-5">
+                                    <div class="w-12 h-12 rounded-lg ${theme.bg} ${theme.border} border flex items-center justify-center">
+                                        <i class="ph ${mod.icon} text-2xl ${theme.text}"></i>
+                                    </div>
+                                    <i class="ph ph-arrow-up-right text-gray-600 group-hover:text-white transition-colors"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-100 mb-2 group-hover:text-indigo-400 transition-colors truncate">${mod.title}</h3>
+                                <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${mod.desc}</p>
+                            </a>
+                        </div>
+                    `;
+                    grid.innerHTML += html;
+                });
+            }
+        }
+
+        function save() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(modules));
+            render();
+        }
+
+        document.getElementById('formAdd').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if(!isAdmin) return;
+            const newItem = {
+                id: Date.now(),
+                title: document.getElementById('inpName').value,
+                desc: document.getElementById('inpDesc').value,
+                link: document.getElementById('inpLink').value,
+                icon: ICONS[Math.floor(Math.random() * ICONS.length)],
+                theme: Math.floor(Math.random() * THEMES.length)
+            };
+            modules.unshift(newItem);
+            save();
+            e.target.reset();
+            toggleModal('modal-add');
+        });
+
+        function removeModule(id, event) {
+            event.preventDefault(); event.stopPropagation();
+            if(confirm('Delete this module?')) {
+                modules = modules.filter(m => m.id !== id);
+                save();
+            }
+        }
+
+        function resetData() {
+            if(confirm('Reset all data?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                location.reload();
+            }
+        }
+
+        function toggleAdmin() {
+            if(isAdmin) {
+                isAdmin = false;
+                updateUI();
+                render();
+            } else {
+                document.getElementById('inpPass').value = '';
+                toggleModal('modal-login');
+                setTimeout(() => document.getElementById('inpPass').focus(), 100);
+            }
+        }
+
+        function login() {
+            const pass = document.getElementById('inpPass').value;
+            if(pass === ADMIN_PASS) {
+                isAdmin = true;
+                toggleModal('modal-login');
+                updateUI();
+                render();
+            } else {
+                const input = document.getElementById('inpPass');
+                input.classList.add('border-red-500', 'text-red-500');
+                setTimeout(() => input.classList.remove('border-red-500', 'text-red-500'), 500);
+            }
+        }
+
+        function updateUI() {
+            const btnAdd = document.getElementById('btnAdd');
+            const btnReset = document.getElementById('btnReset');
+            const iconAuth = document.getElementById('iconAuth');
+            const btnAuth = document.getElementById('btnAuth');
+
+            if(isAdmin) {
+                btnAdd.classList.remove('hidden'); btnAdd.classList.add('flex');
+                btnReset.classList.remove('hidden');
+                iconAuth.classList.replace('ph-lock-key', 'ph-sign-out');
+                btnAuth.classList.add('bg-red-500/10', 'text-red-400', 'border-red-500/20');
+            } else {
+                btnAdd.classList.add('hidden'); btnAdd.classList.remove('flex');
+                btnReset.classList.add('hidden');
+                iconAuth.classList.replace('ph-sign-out', 'ph-lock-key');
+                btnAuth.classList.remove('bg-red-500/10', 'text-red-400', 'border-red-500/20');
+            }
+        }
+
+        function toggleModal(id) {
+            const el = document.getElementById(id);
+            if(el.classList.contains('invisible')) {
+                el.classList.remove('invisible', 'opacity-0');
+                document.body.classList.add('modal-active');
+            } else {
+                el.classList.add('invisible', 'opacity-0');
+                document.body.classList.remove('modal-active');
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', render);
+        document.getElementById('inpPass').addEventListener('keypress', (e) => { if(e.key === 'Enter') login(); });
+        render();
+
+        /* =========================================
+           DISABLE VIEW SOURCE / INSPECT
+           ========================================= */
+        
+        // 1. Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Keyboard Shortcuts (F12, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+S)
+        document.onkeydown = function(e) {
+            // F12
+            if(e.keyCode == 123) {
+                return false;
+            }
+            // Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+U (View Source), Ctrl+S (Save)
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) {
+                return false;
+            }
+            if(e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
