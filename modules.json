@@ -3,6 +3,10 @@
   { "id": 2, "title": "Treasury Module", "desc": "", "link": "https://gen.mactech.net.in/Maafin_Treasury_Module/Login/", "icon": "ph-cloud", "theme": 0 },
   { "id": 3, "title": "Property Sale", "desc": "", "link": "https://gen.mactech.net.in/Property_sale/", "icon": "ph-users", "theme": 4 },
   { "id": 4, "title": "ALM", "desc": "", "link": "https://gen.mactech.net.in/ALM/", "icon": "ph-slack-logo", "theme": 3 },
-  { "id": 5, "title": "CRF Tracker", "desc": "", "link": "https://maafin.mactech.net.in/CRF_TRACKER/", "icon": "ph-github-logo", "theme": 1 }
-
+  { "id": 5, "title": "CRF Tracker", "desc": "", "link": "https://maafin.mactech.net.in/CRF_TRACKER/", "icon": "ph-github-logo", "theme": 1 },
+  { "id": 6, "title": "Property Management", "desc": "", "link": "https://maafinlegal.mactech.net.in/", "icon": "ph-check-square", "theme": 0 },
+  { "id": 7, "title": "MAAFIN Feedback", "desc": "", "link": "https://maafin.mactech.net.in/Maafin%20Feedback%20Module/", "icon": "ph-paint-brush", "theme": 5 },
+  { "id": 8, "title": "Branch Ambience", "desc": "", "link": "https://maafin.mactech.net.in/Branchambiencemodule/", "icon": "ph-amazon-logo", "theme": 3 },
+  { "id": 9, "title": "PRM", "desc": "", "link": "http://maafin.mactech.net.in/PRM_MODULE", "icon": "ph-robot", "theme": 1 }
 ]
+
