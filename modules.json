@@ -8,8 +8,15 @@
   { "id": 7, "title": "MAAFIN Feedback", "desc": "", "link": "https://maafin.mactech.net.in/Maafin%20Feedback%20Module/", "icon": "ph-paint-brush", "theme": 5 },
   { "id": 8, "title": "Branch Ambience", "desc": "", "link": "https://maafin.mactech.net.in/Branchambiencemodule/", "icon": "ph-amazon-logo", "theme": 3 },
   { "id": 9, "title": "PRM", "desc": "", "link": "http://maafin.mactech.net.in/PRM_MODULE", "icon": "ph-robot", "theme": 1 },
-  { "id": 10, "title": "AML", "desc": "", "link": "https://gen.mactech.net.in/AMLPortal", "icon": "ph-notebook", "theme": 4 }
+  { "id": 10, "title": "AML", "desc": "", "link": "https://gen.mactech.net.in/AMLPortal", "icon": "ph-notebook", "theme": 4 },
+  { "id": 11, "title": "Call Management", "desc": "", "link": "https://maafin.mactech.net.in/BranchCallManagementModule/", "icon": "ph-video-camera", "theme": 0 },
+  { "id": 12, "title": "Expense Voyage", "desc": "", "link": "https://gen.mactech.net.in/ExpenseVoyage", "icon": "ph-chart-line-up", "theme": 2 },
+  { "id": 13, "title": "Alert Mechanism", "desc": "", "link": "https://gen.mactech.net.in/alertmechanism", "icon": "ph-credit-card", "theme": 5 },
+  { "id": 14, "title": "Vigilance Monitor", "desc": "", "link": "https://gen.mactech.net.in/VigilanceMonitor/", "icon": "ph-triangle", "theme": 1 },
+  { "id": 15, "title": "Compliance Task Management", "desc": "", "link": "https://serv.mactech.net.in/ComplianceTask_Management", "icon": "ph-cube", "theme": 0 },
+  { "id": 16, "title": "Customer Exposure", "desc": "", "link": "https://gen.mactech.net.in/customer_exposure/", "icon": "ph-gitlab-logo-simple", "theme": 3 }
 ]
+
 
 
 
