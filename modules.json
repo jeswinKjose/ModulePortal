@@ -1,7 +1,8 @@
 [
-  { "id": 1, "title": "Google Workspace", "desc": "Email, Drive & Docs", "link": "https://google.com", "icon": "ph-google-logo", "theme": 2 },
-  { "id": 2, "title": "Salesforce", "desc": "CRM and Sales Pipeline", "link": "https://salesforce.com", "icon": "ph-cloud", "theme": 0 },
-  { "id": 3, "title": "HR Portal", "desc": "Employee Handbook & Payroll", "link": "#", "icon": "ph-users", "theme": 4 },
-  { "id": 4, "title": "Slack", "desc": "Team Communication", "link": "https://slack.com", "icon": "ph-slack-logo", "theme": 3 },
-  { "id": 5, "title": "GitHub", "desc": "Source Code Repositories", "link": "https://github.com", "icon": "ph-github-logo", "theme": 1 }
+  { "id": 1, "title": "Legal Payment Module", "desc": "", "link": "https://maafinlegal.mactech.net.in/", "icon": "ph-google-logo", "theme": 2 },
+  { "id": 2, "title": "Treasury Module", "desc": "", "link": "https://gen.mactech.net.in/Maafin_Treasury_Module/Login/", "icon": "ph-cloud", "theme": 0 },
+  { "id": 3, "title": "Property Sale", "desc": "", "link": "https://gen.mactech.net.in/Property_sale/", "icon": "ph-users", "theme": 4 },
+  { "id": 4, "title": "ALM", "desc": "", "link": "https://gen.mactech.net.in/ALM/", "icon": "ph-slack-logo", "theme": 3 },
+  { "id": 5, "title": "CRF Tracker", "desc": "", "link": "https://maafin.mactech.net.in/CRF_TRACKER/", "icon": "ph-github-logo", "theme": 1 }
+
 ]
