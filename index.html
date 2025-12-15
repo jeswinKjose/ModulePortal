@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module Hub</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -28,22 +28,42 @@
     </script>
 
     <style>
-        body { 
-            background-color: #030712; 
+        body {
+            background-color: #030712;
             color: #f3f4f6;
             user-select: none; /* Prevent text selection */
         }
-        .card-anim { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-anim:hover { 
-            transform: translateY(-4px);
-            box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.15);
-            border-color: rgba(99, 102, 241, 0.4);
+
+        .card-anim {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #111827; }
-        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
-        .modal { transition: opacity 0.2s ease-in-out, visibility 0.2s; }
-        .modal-active { overflow: hidden; }
+
+            .card-anim:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.15);
+                border-color: rgba(99, 102, 241, 0.4);
+            }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+
+        .modal {
+            transition: opacity 0.2s ease-in-out, visibility 0.2s;
+        }
+
+        .modal-active {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
@@ -63,9 +83,9 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="ph ph-magnifying-glass text-gray-500 group-focus-within:text-indigo-400 transition-colors"></i>
                         </div>
-                        <input type="text" id="searchInput" 
-                            class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-all"
-                            placeholder="Find a module...">
+                        <input type="text" id="searchInput"
+                               class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-all"
+                               placeholder="Find a module...">
                     </div>
                     <!-- Buttons hidden for clean look, Admin only -->
                     <button id="btnAuth" onclick="toggleAdmin()" class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
@@ -114,7 +134,7 @@
     <script>
         const ADMIN_PASS = 'Software5966#';
         const JSON_FILE = 'modules.json'; // The file on GitHub
-        
+
         const THEMES = [
             { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20' },
             { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20' },
@@ -134,13 +154,13 @@
                 const response = await fetch(JSON_FILE);
                 if (!response.ok) throw new Error("JSON not found");
                 const cloudData = await response.json();
-                
+
                 // 2. Load LocalStorage (Optional: for local overrides)
                 const localData = JSON.parse(localStorage.getItem('my_local_modules')) || [];
-                
+
                 // 3. Merge (Cloud data first, then local)
                 modules = [...cloudData, ...localData];
-                
+
                 document.getElementById('loadingState').classList.add('hidden');
                 render();
             } catch (error) {
@@ -153,11 +173,11 @@
             const grid = document.getElementById('grid');
             const searchVal = document.getElementById('searchInput').value.toLowerCase();
             const emptyState = document.getElementById('emptyState');
-            
+
             grid.innerHTML = '';
-            
-            const filtered = modules.filter(m => 
-                m.title.toLowerCase().includes(searchVal) || 
+
+            const filtered = modules.filter(m =>
+                m.title.toLowerCase().includes(searchVal) ||
                 (m.desc && m.desc.toLowerCase().includes(searchVal))
             );
 
@@ -168,19 +188,19 @@
                 filtered.forEach(mod => {
                     const theme = THEMES[mod.theme] || THEMES[0];
                     const html = `
-                        <div class="relative group h-full">
-                            <a href="${mod.link}" target="_blank" class="card-anim block h-full bg-gray-900 border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
-                                <div class="flex justify-between items-start mb-5">
-                                    <div class="w-12 h-12 rounded-lg ${theme.bg} ${theme.border} border flex items-center justify-center">
-                                        <i class="ph ${mod.icon} text-2xl ${theme.text}"></i>
-                                    </div>
-                                    <i class="ph ph-arrow-up-right text-gray-600 group-hover:text-white transition-colors"></i>
+                                <div class="relative group h-full">
+                                    <a href="${mod.link}" target="_blank" class="card-anim block h-full bg-gray-900 border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                                        <div class="flex justify-between items-start mb-5">
+                                            <div class="w-12 h-12 rounded-lg ${theme.bg} ${theme.border} border flex items-center justify-center">
+                                                <i class="ph ${mod.icon} text-2xl ${theme.text}"></i>
+                                            </div>
+                                            <i class="ph ph-arrow-up-right text-gray-600 group-hover:text-white transition-colors"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-100 mb-2 group-hover:text-indigo-400 transition-colors truncate">${mod.title}</h3>
+                                        <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${mod.desc}</p>
+                                    </a>
                                 </div>
-                                <h3 class="text-lg font-bold text-gray-100 mb-2 group-hover:text-indigo-400 transition-colors truncate">${mod.title}</h3>
-                                <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${mod.desc}</p>
-                            </a>
-                        </div>
-                    `;
+                            `;
                     grid.innerHTML += html;
                 });
             }
@@ -188,7 +208,7 @@
 
         // --- AUTH ---
         function toggleAdmin() {
-            if(isAdmin) {
+            if (isAdmin) {
                 isAdmin = false;
                 document.getElementById('iconAuth').classList.replace('ph-sign-out', 'ph-lock-key');
                 document.getElementById('btnAuth').classList.remove('bg-red-500/10', 'text-red-400');
@@ -200,7 +220,7 @@
         }
 
         function login() {
-            if(document.getElementById('inpPass').value === ADMIN_PASS) {
+            if (document.getElementById('inpPass').value === ADMIN_PASS) {
                 isAdmin = true;
                 toggleModal('modal-login');
                 alert("Logged in.\n\nTo add modules PERMANENTLY, please edit the 'modules.json' file in your GitHub repository.");
@@ -213,7 +233,7 @@
 
         function toggleModal(id) {
             const el = document.getElementById(id);
-            if(el.classList.contains('invisible')) {
+            if (el.classList.contains('invisible')) {
                 el.classList.remove('invisible', 'opacity-0');
             } else {
                 el.classList.add('invisible', 'opacity-0');
@@ -222,15 +242,15 @@
 
         // Init
         document.getElementById('searchInput').addEventListener('input', render);
-        document.getElementById('inpPass').addEventListener('keypress', (e) => { if(e.key === 'Enter') login(); });
+        document.getElementById('inpPass').addEventListener('keypress', (e) => { if (e.key === 'Enter') login(); });
         loadModules(); // Start Fetch
 
         // Security Disable
         document.addEventListener('contextmenu', event => event.preventDefault());
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) return false;
-            if(e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) return false;
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) return false;
+            if (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) return false;
         }
     </script>
 </body>
@@ -244,30 +264,49 @@ BACKUP DATA (ARCHIVED MODULES)
 Copy and paste these into modules.json when you need them.
 =======================================================================
 
-  { "id": 17, "title": "LinkedIn", "desc": "Professional Network", "link": "https://linkedin.com", "icon": "ph-linkedin-logo", "theme": 0 },
-  { "id": 18, "title": "YouTube Studio", "desc": "Video Content Management", "link": "https://studio.youtube.com", "icon": "ph-youtube-logo", "theme": 4 },
-  { "id": 19, "title": "Dropbox", "desc": "File Storage", "link": "https://dropbox.com", "icon": "ph-dropbox-logo", "theme": 2 },
-  { "id": 20, "title": "Trello", "desc": "Kanban Boards", "link": "https://trello.com", "icon": "ph-kanban", "theme": 0 },
-  { "id": 21, "title": "Mailchimp", "desc": "Email Marketing", "link": "https://mailchimp.com", "icon": "ph-envelope-open", "theme": 2 },
-  { "id": 22, "title": "Spotify", "desc": "Office Playlist", "link": "https://spotify.com", "icon": "ph-spotify-logo", "theme": 1 },
-  { "id": 23, "title": "Reddit", "desc": "Tech News & Discussion", "link": "https://reddit.com", "icon": "ph-reddit-logo", "theme": 3 },
-  { "id": 24, "title": "Stack Overflow", "desc": "Developer Q&A", "link": "https://stackoverflow.com", "icon": "ph-stack-overflow-logo", "theme": 3 },
-  { "id": 25, "title": "Asana", "desc": "Task Management", "link": "https://asana.com", "icon": "ph-list-checks", "theme": 4 },
-  { "id": 26, "title": "HubSpot", "desc": "Inbound Marketing", "link": "https://hubspot.com", "icon": "ph-users-three", "theme": 5 },
-  { "id": 27, "title": "Sentry", "desc": "Error Tracking", "link": "https://sentry.io", "icon": "ph-bug", "theme": 4 },
-  { "id": 28, "title": "Datadog", "desc": "Server Monitoring", "link": "https://datadoghq.com", "icon": "ph-monitor", "theme": 5 },
-  { "id": 29, "title": "Canva", "desc": "Graphic Design", "link": "https://canva.com", "icon": "ph-palette", "theme": 2 },
-  { "id": 30, "title": "Twitch", "desc": "Live Streaming", "link": "https://twitch.tv", "icon": "ph-twitch-logo", "theme": 5 },
-  { "id": 31, "title": "Cloudflare", "desc": "DNS & Security", "link": "https://cloudflare.com", "icon": "ph-cloud-fog", "theme": 3 },
-  { "id": 32, "title": "DigitalOcean", "desc": "VPS Hosting", "link": "https://digitalocean.com", "icon": "ph-waves", "theme": 0 },
-  { "id": 33, "title": "Heroku", "desc": "App Platform", "link": "https://heroku.com", "icon": "ph-rocket", "theme": 5 },
-  { "id": 34, "title": "Monday.com", "desc": "Work OS", "link": "https://monday.com", "icon": "ph-calendar-check", "theme": 1 },
-  { "id": 35, "title": "Zendesk", "desc": "Customer Support", "link": "https://zendesk.com", "icon": "ph-life-buoy", "theme": 1 },
-  { "id": 36, "title": "Intercom", "desc": "Live Chat", "link": "https://intercom.com", "icon": "ph-chat-circle-dots", "theme": 0 },
-  { "id": 37, "title": "Typeform", "desc": "Online Forms", "link": "https://typeform.com", "icon": "ph-selection", "theme": 2 },
-  { "id": 38, "title": "Basecamp", "desc": "Project Management", "link": "https://basecamp.com", "icon": "ph-camp-fire", "theme": 2 },
-  { "id": 39, "title": "Miro", "desc": "Online Whiteboard", "link": "https://miro.com", "icon": "ph-presentation", "theme": 4 },
-  { "id": 40, "title": "Whimsical", "desc": "Flowcharts", "link": "https://whimsical.com", "icon": "ph-tree-structure", "theme": 5 },
+    
+  {
+    "id": 36,
+    "title": "Intercom",
+    "desc": "Live Chat",
+    "link": "https://intercom.com",
+    "icon": "ph-chat-circle-dots",
+    "theme": 0
+  },
+  {
+    "id": 37,
+    "title": "Typeform",
+    "desc": "Online Forms",
+    "link": "https://typeform.com",
+    "icon": "ph-selection",
+    "theme": 2
+  },
+  {
+    "id": 38,
+    "title": "Basecamp",
+    "desc": "Project Management",
+    "link": "https://basecamp.com",
+    "icon": "ph-camp-fire",
+    "theme": 2
+  },
+  {
+    "id": 39,
+    "title": "Miro",
+    "desc": "Online Whiteboard",
+    "link": "https://miro.com",
+    "icon": "ph-presentation",
+    "theme": 4
+  },
+  {
+    "id": 40,
+    "title": "Whimsical",
+    "desc": "Flowcharts",
+    "link": "https://whimsical.com",
+    "icon": "ph-tree-structure",
+    "theme": 5
+  },
+
+
   { "id": 41, "title": "Grafana", "desc": "Metrics Dashboard", "link": "#", "icon": "ph-chart-bar", "theme": 3 },
   { "id": 42, "title": "Prometheus", "desc": "Alerts & Monitoring", "link": "#", "icon": "ph-fire", "theme": 3 },
   { "id": 43, "title": "Jenkins", "desc": "CI/CD Pipeline", "link": "#", "icon": "ph-gear", "theme": 0 },
@@ -330,4 +369,3 @@ Copy and paste these into modules.json when you need them.
   { "id": 100, "title": "System Status", "desc": "Uptime Monitor", "link": "#", "icon": "ph-activity", "theme": 3 }
 
 -->
-

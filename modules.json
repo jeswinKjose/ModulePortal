@@ -81,7 +81,7 @@
   },
   {
     "id": 11,
-    "title": "Call Management",
+    "title": "Interest Calculation",
     "desc": "",
     "link": "https://maafin.mactech.net.in/BranchCallManagementModule/",
     "icon": "ph-video-camera",
@@ -97,7 +97,7 @@
   },
   {
     "id": 13,
-    "title": "Alert Mechanism",
+    "title": "AH Alert Verification",
     "desc": "",
     "link": "https://gen.mactech.net.in/alertmechanism",
     "icon": "ph-credit-card",
@@ -113,7 +113,7 @@
   },
   {
     "id": 15,
-    "title": "Compliance Task Management",
+    "title": "Compliance Management",
     "desc": "",
     "link": "https://serv.mactech.net.in/ComplianceTask_Management",
     "icon": "ph-cube",
@@ -126,5 +126,169 @@
     "link": "https://gen.mactech.net.in/customer_exposure/",
     "icon": "ph-gitlab-logo-simple",
     "theme": 3
+  },
+
+
+
+
+
+  {
+    "id": 17,
+    "title": "Incentive Automation",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/Incentive_Automation/login",
+    "icon": "ph-linkedin-logo",
+    "theme": 0
+  },
+  {
+    "id": 18,
+    "title": "Loan Agreement",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/Loan_AgreementAutomation/",
+    "icon": "ph-youtube-logo",
+    "theme": 4
+  },
+  {
+    "id": 19,
+    "title": "Taxation management",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/Maafin_Taxation_Module/",
+    "icon": "ph-dropbox-logo",
+    "theme": 2
+  },
+  {
+    "id": 20,
+    "title": "Document Tracking - SME",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/DocumentTrackingModule",
+    "icon": "ph-kanban",
+    "theme": 0
+  },
+  {
+    "id": 21,
+    "title": "KMP Key Factors",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/KMP_Dashboard",
+    "icon": "ph-envelope-open",
+    "theme": 2
+  },
+  {
+    "id": 22,
+    "title": "File Verification,Credit Monitoring- VL",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/MaafinOversightModule_Vl",
+    "icon": "ph-spotify-logo",
+    "theme": 1
+  },
+  {
+    "id": 23,
+    "title": "File Verification- SME",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/OVERSIGHT_SME_MODULE/",
+    "icon": "ph-reddit-logo",
+    "theme": 3
+  },
+  {
+    "id": 24,
+    "title": "Credit Monitoring - SME",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/Oversight_Sme_CreditMonitor/",
+    "icon": "ph-stack-overflow-logo",
+    "theme": 3
+  },
+
+
+
+
+
+
+
+  {
+    "id": 25,
+    "title": "Lead Management",
+    "desc": "",
+    "link": "http://maafin.mactech.net.in/Prospecto_Cascade",
+    "icon": "ph-list-checks",
+    "theme": 4
+  },
+  {
+    "id": 26,
+    "title": "Document Tracking VL",
+    "desc": "",
+    "link": "http://maafin.mactech.net.in/Document_Tracking_VL",
+    "icon": "ph-users-three",
+    "theme": 5
+  },
+  {
+    "id": 27,
+    "title": "Customer Complaint",
+    "desc": "",
+    "link": "http://maafin.mactech.net.in/Complaint_Management_System",
+    "icon": "ph-bug",
+    "theme": 4
+  },
+  {
+    "id": 28,
+    "title": "Candidate Management",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/MaafinCareerPrivate",
+    "icon": "ph-monitor",
+    "theme": 5
+  },
+  {
+    "id": 29,
+    "title": "Write Off Module",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/WriteOff",
+    "icon": "ph-palette",
+    "theme": 2
+  },
+  {
+    "id": 30,
+    "title": "Landing Page",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/MaafinCampaign ",
+    "icon": "ph-twitch-logo",
+    "theme": 5
+  },
+  {
+    "id": 31,
+    "title": "Sales Module",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/WriteOff",
+    "icon": "ph-cloud-fog",
+    "theme": 3
+  },
+  {
+    "id": 32,
+    "title": "Activity Tracker",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/Activity_Tracker",
+    "icon": "ph-waves",
+    "theme": 0
+  },
+  {
+    "id": 33,
+    "title": "NPA Tracker ",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/MaafinTracker_Module ",
+    "icon": "ph-rocket",
+    "theme": 5
+  },
+  {
+    "id": 34,
+    "title": "SMA Tracker",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/WriteOff",
+    "icon": "ph-calendar-check",
+    "theme": 1
+  },
+  {
+    "id": 35,
+    "title": "Legal Document Request ",
+    "desc": "",
+    "link": "https://maafinlegal.mactech.net.in/",
+    "icon": "ph-life-buoy",
+    "theme": 1
   }
 ]
