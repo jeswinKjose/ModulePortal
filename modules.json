@@ -322,5 +322,58 @@
     "icon": "ph-selection",
     "theme": 2,
     "type": "external"
+  },
+
+
+
+
+
+  {
+    "id": 38,
+    "title": "JusSuit",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/JusSuit_grp/MAFIL/login",
+    "icon": "ph-camp-fire",
+    "theme": 2,
+    "type": "external"
+  },
+  {
+    "id": 39,
+    "title": "Release Management",
+    "desc": "",
+    "link": "https://genapps.mactech.net.in/Releasemanagement/#/login",
+    "icon": "ph-presentation",
+    "theme": 4,
+    "type": "external"
+  },
+  {
+    "id": 40,
+    "title": "Helpdesk",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/Helpdesk/login.aspx",
+    "icon": "ph-tree-structure",
+    "theme": 5,
+    "type": "external"
+  },
+
+
+  {
+    "id": 41,
+    "title": "Task Management",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/taskmanagement/",
+    "icon": "ph-chart-bar",
+    "theme": 3,
+    "type": "external"
+  },
+  {
+    "id": 42,
+    "title": "Madu",
+    "desc": "",
+    "link": "https://lmsmaafin.com/madu/login.aspx",
+    "icon": "ph-fire",
+    "theme": 3,
+    "type": "external"
   }
+
 ]
