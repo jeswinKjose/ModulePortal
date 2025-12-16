@@ -5,7 +5,8 @@
     "desc": "",
     "link": "https://maafinlegal.mactech.net.in/",
     "icon": "ph-google-logo",
-    "theme": 2
+    "theme": 2,
+    "type": "internal"
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/Maafin_Treasury_Module/Login/",
     "icon": "ph-cloud",
-    "theme": 0
+    "theme": 0,
+    "type": "internal"
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/Property_sale/",
     "icon": "ph-users",
-    "theme": 4
+    "theme": 4,
+    "type": "internal"
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/ALM/",
     "icon": "ph-slack-logo",
-    "theme": 3
+    "theme": 3,
+    "type": "internal"
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/CRF_TRACKER/",
     "icon": "ph-github-logo",
-    "theme": 1
+    "theme": 1,
+    "type": "internal"
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "desc": "",
     "link": "https://maafinlegal.mactech.net.in/",
     "icon": "ph-check-square",
-    "theme": 0
+    "theme": 0,
+    "type": "internal"
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/Maafin%20Feedback%20Module/",
     "icon": "ph-paint-brush",
-    "theme": 5
+    "theme": 5,
+    "type": "internal"
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/Branchambiencemodule/",
     "icon": "ph-amazon-logo",
-    "theme": 3
+    "theme": 3,
+    "type": "internal"
   },
   {
     "id": 9,
@@ -69,7 +77,8 @@
     "desc": "",
     "link": "http://maafin.mactech.net.in/PRM_MODULE",
     "icon": "ph-robot",
-    "theme": 1
+    "theme": 1,
+    "type": "internal"
   },
   {
     "id": 10,
@@ -77,7 +86,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/AMLPortal",
     "icon": "ph-notebook",
-    "theme": 4
+    "theme": 4,
+    "type": "internal"
   },
   {
     "id": 11,
@@ -85,7 +95,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/BranchCallManagementModule/",
     "icon": "ph-video-camera",
-    "theme": 0
+    "theme": 0,
+    "type": "internal"
   },
   {
     "id": 12,
@@ -93,7 +104,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/ExpenseVoyage",
     "icon": "ph-chart-line-up",
-    "theme": 2
+    "theme": 2,
+    "type": "internal"
   },
   {
     "id": 13,
@@ -101,7 +113,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/alertmechanism",
     "icon": "ph-credit-card",
-    "theme": 5
+    "theme": 5,
+    "type": "internal"
   },
   {
     "id": 14,
@@ -109,7 +122,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/VigilanceMonitor/",
     "icon": "ph-triangle",
-    "theme": 1
+    "theme": 1,
+    "type": "internal"
   },
   {
     "id": 15,
@@ -117,7 +131,8 @@
     "desc": "",
     "link": "https://serv.mactech.net.in/ComplianceTask_Management",
     "icon": "ph-cube",
-    "theme": 0
+    "theme": 0,
+    "type": "internal"
   },
   {
     "id": 16,
@@ -125,7 +140,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/customer_exposure/",
     "icon": "ph-gitlab-logo-simple",
-    "theme": 3
+    "theme": 3,
+    "type": "internal"
   },
 
 
@@ -138,7 +154,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/Incentive_Automation/login",
     "icon": "ph-linkedin-logo",
-    "theme": 0
+    "theme": 0,
+    "type": "internal"
   },
   {
     "id": 18,
@@ -146,7 +163,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/Loan_AgreementAutomation/",
     "icon": "ph-youtube-logo",
-    "theme": 4
+    "theme": 4,
+    "type": "internal"
   },
   {
     "id": 19,
@@ -154,7 +172,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/Maafin_Taxation_Module/",
     "icon": "ph-dropbox-logo",
-    "theme": 2
+    "theme": 2,
+    "type": "internal"
   },
   {
     "id": 20,
@@ -162,7 +181,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/DocumentTrackingModule",
     "icon": "ph-kanban",
-    "theme": 0
+    "theme": 0,
+    "type": "internal"
   },
   {
     "id": 21,
@@ -170,7 +190,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/KMP_Dashboard",
     "icon": "ph-envelope-open",
-    "theme": 2
+    "theme": 2,
+    "type": "internal"
   },
   {
     "id": 22,
@@ -178,7 +199,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/MaafinOversightModule_Vl",
     "icon": "ph-spotify-logo",
-    "theme": 1
+    "theme": 1,
+    "type": "internal"
   },
   {
     "id": 23,
@@ -186,7 +208,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/OVERSIGHT_SME_MODULE/",
     "icon": "ph-reddit-logo",
-    "theme": 3
+    "theme": 3,
+    "type": "internal"
   },
   {
     "id": 24,
@@ -194,7 +217,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/Oversight_Sme_CreditMonitor/",
     "icon": "ph-stack-overflow-logo",
-    "theme": 3
+    "theme": 3,
+    "type": "internal"
   },
 
 
@@ -209,7 +233,8 @@
     "desc": "",
     "link": "http://maafin.mactech.net.in/Prospecto_Cascade",
     "icon": "ph-list-checks",
-    "theme": 4
+    "theme": 4,
+    "type": "internal"
   },
   {
     "id": 26,
@@ -217,7 +242,8 @@
     "desc": "",
     "link": "http://maafin.mactech.net.in/Document_Tracking_VL",
     "icon": "ph-users-three",
-    "theme": 5
+    "theme": 5,
+    "type": "internal"
   },
   {
     "id": 27,
@@ -225,7 +251,8 @@
     "desc": "",
     "link": "http://maafin.mactech.net.in/Complaint_Management_System",
     "icon": "ph-bug",
-    "theme": 4
+    "theme": 4,
+    "type": "internal"
   },
   {
     "id": 28,
@@ -233,7 +260,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/MaafinCareerPrivate",
     "icon": "ph-monitor",
-    "theme": 5
+    "theme": 5,
+    "type": "internal"
   },
   {
     "id": 29,
@@ -241,7 +269,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/WriteOff",
     "icon": "ph-palette",
-    "theme": 2
+    "theme": 2,
+    "type": "internal"
   },
   {
     "id": 30,
@@ -249,7 +278,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/MaafinCampaign ",
     "icon": "ph-twitch-logo",
-    "theme": 5
+    "theme": 5,
+    "type": "internal"
   },
   {
     "id": 31,
@@ -257,7 +287,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/WriteOff",
     "icon": "ph-cloud-fog",
-    "theme": 3
+    "theme": 3,
+    "type": "internal"
   },
   {
     "id": 32,
@@ -265,7 +296,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/Activity_Tracker",
     "icon": "ph-waves",
-    "theme": 0
+    "theme": 0,
+    "type": "internal"
   },
   {
     "id": 33,
@@ -273,7 +305,8 @@
     "desc": "",
     "link": "https://gen.mactech.net.in/MaafinTracker_Module ",
     "icon": "ph-rocket",
-    "theme": 5
+    "theme": 5,
+    "type": "internal"
   },
   {
     "id": 34,
@@ -281,7 +314,8 @@
     "desc": "",
     "link": "https://maafin.mactech.net.in/WriteOff",
     "icon": "ph-calendar-check",
-    "theme": 1
+    "theme": 1,
+    "type": "internal"
   },
   {
     "id": 36,
@@ -289,6 +323,16 @@
     "desc": "",
     "link": "https://maafinlegal.mactech.net.in/",
     "icon": "ph-chat-circle-dots",
-    "theme": 0
+    "theme": 0,
+    "type": "internal"
+  },
+  {
+    "id": 37,
+    "title": "Paperless",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/paperlessmaf/Login.aspx",
+    "icon": "ph-selection",
+    "theme": 2,
+    "type": "external"
   }
 ]

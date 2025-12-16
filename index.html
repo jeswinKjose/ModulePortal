@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module Hub</title>
+    <title>Module Portal</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,11 +31,11 @@
         body {
             background-color: #030712;
             color: #f3f4f6;
-            user-select: none; /* Prevent text selection */
+            user-select: none;
         }
-
+        /* Smoother Card Hover */
         .card-anim {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
             .card-anim:hover {
@@ -57,12 +57,9 @@
             border-radius: 4px;
         }
 
+        /* Modal Transition */
         .modal {
-            transition: opacity 0.2s ease-in-out, visibility 0.2s;
-        }
-
-        .modal-active {
-            overflow: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
     </style>
 </head>
@@ -72,23 +69,47 @@
     <header class="fixed w-full top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row h-auto md:h-20 items-center justify-between py-4 md:py-0 gap-4">
+
+                <!-- Logo -->
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center text-white">
                         <i class="ph ph-squares-four text-xl"></i>
                     </div>
                     <span class="text-xl font-bold tracking-tight text-white">Module<span class="text-indigo-500">Hub</span></span>
                 </div>
-                <div class="flex w-full md:w-auto items-center gap-3">
-                    <div class="relative flex-grow md:w-64 group">
+
+                <!-- Controls Container -->
+                <div class="flex flex-col sm:flex-row w-full md:w-auto items-center gap-3">
+
+                    <!-- IMPROVED: Smooth Tab Switcher -->
+                    <div class="flex bg-gray-900 p-1 rounded-lg border border-gray-800 gap-1">
+                        <!-- Note: Base classes are static, JS toggles the colors only -->
+                        <button onclick="setFilter('all')" id="tab-all"
+                                class="px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ease-out bg-indigo-600 text-white shadow-md">
+                            All
+                        </button>
+                        <button onclick="setFilter('internal')" id="tab-internal"
+                                class="px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ease-out text-gray-400 hover:text-white hover:bg-gray-800">
+                            Internal
+                        </button>
+                        <button onclick="setFilter('external')" id="tab-external"
+                                class="px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ease-out text-gray-400 hover:text-white hover:bg-gray-800">
+                            External
+                        </button>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="relative flex-grow md:w-64 group w-full">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="ph ph-magnifying-glass text-gray-500 group-focus-within:text-indigo-400 transition-colors"></i>
                         </div>
                         <input type="text" id="searchInput"
                                class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-all"
-                               placeholder="Find a module...">
+                               placeholder="Search...">
                     </div>
-                    <!-- Buttons hidden for clean look, Admin only -->
-                    <button id="btnAuth" onclick="toggleAdmin()" class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
+
+                    <!-- Admin Btn -->
+                    <button id="btnAuth" onclick="toggleAdmin()" class="hidden sm:flex items-center justify-center w-10 h-10 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
                         <i id="iconAuth" class="ph ph-lock-key text-lg"></i>
                     </button>
                 </div>
@@ -97,18 +118,22 @@
     </header>
 
     <!-- Content -->
-    <main class="flex-grow pt-32 pb-10 px-4 sm:px-6 lg:px-8">
+    <main class="flex-grow pt-36 md:pt-32 pb-10 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-            <!-- Loading State -->
+            <!-- Grid container with fade-in animation support -->
+            <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 transition-opacity duration-300"></div>
+
+            <!-- Loading -->
             <div id="loadingState" class="text-center py-20 text-gray-500">
                 <i class="ph ph-spinner animate-spin text-3xl mb-2"></i>
                 <p>Loading modules...</p>
             </div>
-            <!-- Empty State -->
+
+            <!-- Empty -->
             <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
                 <i class="ph ph-planet text-4xl text-gray-600 mb-4"></i>
                 <h3 class="text-lg font-medium text-white">No modules found</h3>
+                <p class="text-sm text-gray-500 mt-2">Try adjusting filters or search terms.</p>
             </div>
         </div>
     </main>
@@ -116,7 +141,7 @@
     <!-- Footer -->
     <footer class="border-t border-gray-800 bg-gray-950 py-8">
         <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-            <p>&copy; 2025 Module Hub.</p>
+            <p>&copy; 2025 Portal. Managed via GitHub.</p>
         </div>
     </footer>
 
@@ -125,7 +150,7 @@
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="toggleModal('modal-login')"></div>
         <div class="relative bg-gray-900 border border-gray-700 w-full max-w-sm mx-4 rounded-xl shadow-2xl p-6 text-center">
             <h3 class="text-lg font-bold text-white mb-2">Admin Access</h3>
-            <p class="text-xs text-gray-400 mb-4">Note: Edits here are local. To update globally, edit modules.json in GitHub.</p>
+            <p class="text-xs text-gray-400 mb-4">Edit modules.json manually to save.</p>
             <input type="password" id="inpPass" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-center mb-4 focus:outline-none focus:border-indigo-500" placeholder="••••">
             <button onclick="login()" class="w-full bg-white text-gray-900 font-bold py-2.5 rounded-lg">Unlock</button>
         </div>
@@ -133,7 +158,7 @@
 
     <script>
         const ADMIN_PASS = 'Software5966#';
-        const JSON_FILE = 'modules.json'; // The file on GitHub
+        const JSON_FILE = 'modules.json';
 
         const THEMES = [
             { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20' },
@@ -146,27 +171,43 @@
 
         let modules = [];
         let isAdmin = false;
+        let currentFilter = 'all';
 
-        // --- FETCH DATA FROM GITHUB FILE ---
         async function loadModules() {
             try {
-                // 1. Fetch from modules.json
                 const response = await fetch(JSON_FILE);
                 if (!response.ok) throw new Error("JSON not found");
                 const cloudData = await response.json();
-
-                // 2. Load LocalStorage (Optional: for local overrides)
                 const localData = JSON.parse(localStorage.getItem('my_local_modules')) || [];
-
-                // 3. Merge (Cloud data first, then local)
                 modules = [...cloudData, ...localData];
-
                 document.getElementById('loadingState').classList.add('hidden');
                 render();
             } catch (error) {
                 console.error("Error loading modules:", error);
-                document.getElementById('loadingState').innerHTML = `<p class='text-red-500'>Error loading ${JSON_FILE}.<br>Make sure the file exists in the repo.</p>`;
+                document.getElementById('loadingState').innerHTML = `<p class='text-red-500'>Error loading ${JSON_FILE}</p>`;
             }
+        }
+
+        // --- NEW SMOOTH FILTER LOGIC ---
+        function setFilter(type) {
+            currentFilter = type;
+            const tabs = ['all', 'internal', 'external'];
+
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === type) {
+                    // Active State: Add Blue, Remove Gray/Hover
+                    btn.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
+                    btn.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-800');
+                } else {
+                    // Inactive State: Remove Blue, Add Gray/Hover
+                    btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
+                    btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-800');
+                }
+            });
+
+            // Re-render
+            render();
         }
 
         function render() {
@@ -176,10 +217,12 @@
 
             grid.innerHTML = '';
 
-            const filtered = modules.filter(m =>
-                m.title.toLowerCase().includes(searchVal) ||
-                (m.desc && m.desc.toLowerCase().includes(searchVal))
-            );
+            const filtered = modules.filter(m => {
+                const matchesSearch = m.title.toLowerCase().includes(searchVal) || (m.desc && m.desc.toLowerCase().includes(searchVal));
+                const modType = m.type ? m.type.toLowerCase() : 'external';
+                const matchesType = currentFilter === 'all' || modType === currentFilter;
+                return matchesSearch && matchesType;
+            });
 
             if (filtered.length === 0) {
                 emptyState.classList.remove('hidden');
@@ -187,26 +230,36 @@
                 emptyState.classList.add('hidden');
                 filtered.forEach(mod => {
                     const theme = THEMES[mod.theme] || THEMES[0];
+                    const typeLabel = (mod.type === 'internal') ? 'Internal' : 'External';
+                    // Visual badge style based on type
+                    const typeColor = (mod.type === 'internal')
+                        ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+                        : 'text-blue-400 bg-blue-500/10 border-blue-500/20';
+                    const typeIcon = (mod.type === 'internal') ? 'ph-building' : 'ph-globe';
+
                     const html = `
-                                <div class="relative group h-full">
-                                    <a href="${mod.link}" target="_blank" class="card-anim block h-full bg-gray-900 border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
-                                        <div class="flex justify-between items-start mb-5">
-                                            <div class="w-12 h-12 rounded-lg ${theme.bg} ${theme.border} border flex items-center justify-center">
-                                                <i class="ph ${mod.icon} text-2xl ${theme.text}"></i>
-                                            </div>
-                                            <i class="ph ph-arrow-up-right text-gray-600 group-hover:text-white transition-colors"></i>
+                            <div class="relative group h-full">
+                                <a href="${mod.link}" target="_blank" class="card-anim block h-full bg-gray-900 border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                                    <div class="flex justify-between items-start mb-5">
+                                        <div class="w-12 h-12 rounded-lg ${theme.bg} ${theme.border} border flex items-center justify-center">
+                                            <i class="ph ${mod.icon} text-2xl ${theme.text}"></i>
                                         </div>
-                                        <h3 class="text-lg font-bold text-gray-100 mb-2 group-hover:text-indigo-400 transition-colors truncate">${mod.title}</h3>
-                                        <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${mod.desc}</p>
-                                    </a>
-                                </div>
-                            `;
+                                        <div class="flex items-center gap-1.5 px-2 py-1 rounded-md border text-[10px] font-semibold uppercase tracking-wider ${typeColor}">
+                                            <i class="ph ${typeIcon}"></i>
+                                            ${typeLabel}
+                                        </div>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-gray-100 mb-2 group-hover:text-indigo-400 transition-colors truncate">${mod.title}</h3>
+                                    <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${mod.desc}</p>
+                                </a>
+                            </div>
+                        `;
                     grid.innerHTML += html;
                 });
             }
         }
 
-        // --- AUTH ---
+        // --- AUTH & MODAL ---
         function toggleAdmin() {
             if (isAdmin) {
                 isAdmin = false;
@@ -223,7 +276,7 @@
             if (document.getElementById('inpPass').value === ADMIN_PASS) {
                 isAdmin = true;
                 toggleModal('modal-login');
-                alert("Logged in.\n\nTo add modules PERMANENTLY, please edit the 'modules.json' file in your GitHub repository.");
+                alert("Logged in Admin Mode");
                 document.getElementById('iconAuth').classList.replace('ph-lock-key', 'ph-sign-out');
                 document.getElementById('btnAuth').classList.add('bg-red-500/10', 'text-red-400');
             } else {
@@ -243,15 +296,8 @@
         // Init
         document.getElementById('searchInput').addEventListener('input', render);
         document.getElementById('inpPass').addEventListener('keypress', (e) => { if (e.key === 'Enter') login(); });
-        loadModules(); // Start Fetch
-
-        // Security Disable
+        loadModules();
         document.addEventListener('contextmenu', event => event.preventDefault());
-        document.onkeydown = function (e) {
-            if (e.keyCode == 123) return false;
-            if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) return false;
-            if (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) return false;
-        }
     </script>
 </body>
 </html>
@@ -264,16 +310,8 @@ BACKUP DATA (ARCHIVED MODULES)
 Copy and paste these into modules.json when you need them.
 =======================================================================
 
-    
- ,
-  {
-    "id": 37,
-    "title": "Typeform",
-    "desc": "Online Forms",
-    "link": "https://typeform.com",
-    "icon": "ph-selection",
-    "theme": 2
-  },
+
+,
   {
     "id": 38,
     "title": "Basecamp",
