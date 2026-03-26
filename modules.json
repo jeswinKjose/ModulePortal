@@ -323,11 +323,6 @@
     "theme": 2,
     "type": "external"
   },
-
-
-
-
-
   {
     "id": 38,
     "title": "JusSuit",
@@ -374,6 +369,15 @@
     "icon": "ph-fire",
     "theme": 3,
     "type": "external"
+  },
+  {
+    "id": 43,
+    "title": "EWS",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/EWS/",
+    "icon": "ph-gear",
+    "theme": 0,
+    "type": "internal"
   }
 
 ]
