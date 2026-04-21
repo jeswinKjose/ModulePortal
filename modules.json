@@ -378,6 +378,15 @@
     "icon": "ph-gear",
     "theme": 0,
     "type": "internal"
+  },
+  {
+    "id": 44,
+    "title": "HO Audit",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/HOAudit/",
+    "icon": "ph-code-check",
+    "theme": 0,
+    "type": "internal"
   }
 
 ]
