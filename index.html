@@ -98,6 +98,10 @@
                                 class="px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ease-out text-gray-400 hover:text-white hover:bg-gray-800">
                             External
                         </button>
+                        <button onclick="setFilter('tools')" id="tab-tools"
+                                class="px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ease-out text-gray-400 hover:text-white hover:bg-gray-800">
+                            Internal Tools
+                        </button>
                     </div>
 
                     <!-- Search -->
@@ -192,7 +196,7 @@
         // --- FILTER LOGIC ---
         function setFilter(type) {
             currentFilter = type;
-            const tabs = ['all', 'internal', 'external'];
+            const tabs = ['all', 'internal', 'external', 'tools'];
 
             tabs.forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
@@ -227,11 +231,20 @@
                 emptyState.classList.add('hidden');
                 filtered.forEach(mod => {
                     const theme = THEMES[mod.theme] || THEMES[0];
-                    const typeLabel = (mod.type === 'internal') ? 'Internal' : 'External';
-                    const typeColor = (mod.type === 'internal')
-                        ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
-                        : 'text-blue-400 bg-blue-500/10 border-blue-500/20';
-                    const typeIcon = (mod.type === 'internal') ? 'ph-building' : 'ph-globe';
+                    
+                    let typeLabel = 'External';
+                    let typeColor = 'text-blue-400 bg-blue-500/10 border-blue-500/20';
+                    let typeIcon = 'ph-globe';
+
+                    if (mod.type === 'internal') {
+                        typeLabel = 'Internal';
+                        typeColor = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+                        typeIcon = 'ph-building';
+                    } else if (mod.type === 'tools') {
+                        typeLabel = 'Tool';
+                        typeColor = 'text-violet-400 bg-violet-500/10 border-violet-500/20';
+                        typeIcon = 'ph-wrench';
+                    }
 
                     const html = `
                                 <div class="relative group h-full">
@@ -255,6 +268,7 @@
             }
         }
 
+        
         // --- AUTH & MODAL ---
         function toggleAdmin() {
             if (isAdmin) {
