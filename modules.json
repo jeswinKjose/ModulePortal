@@ -190,7 +190,7 @@
   },
   {
     "id": 22,
-    "title": "File Verification,Credit Monitoring- VL",
+    "title": "File Verification VL",
     "desc": "",
     "link": "https://maafin.mactech.net.in/MaafinOversightModule_Vl",
     "icon": "ph-spotify-logo",
@@ -387,6 +387,35 @@
     "icon": "ph-code-check",
     "theme": 0,
     "type": "internal"
+  },
+  {
+    "id": 45,
+    "title": "Credit Monitoring VL",
+    "desc": "",
+    "link": "https://maafin.mactech.net.in/MaafinOversightModule_Vl",
+    "icon": "ph-paper-plane-tilt",
+    "theme": 3,
+    "type": "internal"
+  },
+  {
+    "id": 45,
+    "title": "File Verification VL",
+    "desc": "Gen server",
+    "link": "https://gen.mactech.net.in/MAAFIN_OVERSIGHT_VL",
+    "icon": "ph-paper-plane-tilt",
+    "theme": 3,
+    "type": "internal"
+  },
+  {
+    "id": 45,
+    "title": "Credit Monitoring VL",
+    "desc": "Gen Server",
+    "link": "https://gen.mactech.net.in/MAAFIN_OVERSIGHT_VL",
+    "icon": "ph-paper-plane-tilt",
+    "theme": 3,
+    "type": "internal"
   }
+
+
 
 ]
