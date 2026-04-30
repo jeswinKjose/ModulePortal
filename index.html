@@ -98,10 +98,6 @@
                                 class="px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ease-out text-gray-400 hover:text-white hover:bg-gray-800">
                             External
                         </button>
-                        <button onclick="setFilter('tools')" id="tab-tools"
-                                class="px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ease-out text-gray-400 hover:text-white hover:bg-gray-800">
-                            Internal Tools
-                        </button>
                     </div>
 
                     <!-- Search -->
@@ -196,7 +192,7 @@
         // --- FILTER LOGIC ---
         function setFilter(type) {
             currentFilter = type;
-            const tabs = ['all', 'internal', 'external', 'tools'];
+            const tabs = ['all', 'internal', 'external'];
 
             tabs.forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
