@@ -398,20 +398,20 @@
     "type": "internal"
   },
   {
-    "id": 45,
+    "id": 46,
     "title": "File Verification VL",
     "desc": "Gen server",
     "link": "https://gen.mactech.net.in/MAAFIN_OVERSIGHT_VL",
-    "icon": "ph-paper-plane-tilt",
+    "icon": "ph-file-code",
     "theme": 3,
     "type": "internal"
   },
   {
-    "id": 45,
+    "id": 47,
     "title": "Credit Monitoring VL",
     "desc": "Gen Server",
     "link": "https://gen.mactech.net.in/MAAFIN_OVERSIGHT_VL",
-    "icon": "ph-paper-plane-tilt",
+    "icon": "ph-database",
     "theme": 3,
     "type": "internal"
   }
