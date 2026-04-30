@@ -1,3 +1,5 @@
+<!--abc-->
+
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -227,44 +229,34 @@
                 emptyState.classList.add('hidden');
                 filtered.forEach(mod => {
                     const theme = THEMES[mod.theme] || THEMES[0];
-                    
-                    let typeLabel = 'External';
-                    let typeColor = 'text-blue-400 bg-blue-500/10 border-blue-500/20';
-                    let typeIcon = 'ph-globe';
-
-                    if (mod.type === 'internal') {
-                        typeLabel = 'Internal';
-                        typeColor = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
-                        typeIcon = 'ph-building';
-                    } else if (mod.type === 'tools') {
-                        typeLabel = 'Tool';
-                        typeColor = 'text-violet-400 bg-violet-500/10 border-violet-500/20';
-                        typeIcon = 'ph-wrench';
-                    }
+                    const typeLabel = (mod.type === 'internal') ? 'Internal' : 'External';
+                    const typeColor = (mod.type === 'internal')
+                        ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+                        : 'text-blue-400 bg-blue-500/10 border-blue-500/20';
+                    const typeIcon = (mod.type === 'internal') ? 'ph-building' : 'ph-globe';
 
                     const html = `
-                                <div class="relative group h-full">
-                                    <a href="${mod.link}" target="_blank" class="card-anim block h-full bg-gray-900 border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
-                                        <div class="flex justify-between items-start mb-5">
-                                            <div class="w-12 h-12 rounded-lg ${theme.bg} ${theme.border} border flex items-center justify-center">
-                                                <i class="ph ${mod.icon} text-2xl ${theme.text}"></i>
+                                    <div class="relative group h-full">
+                                        <a href="${mod.link}" target="_blank" class="card-anim block h-full bg-gray-900 border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                                            <div class="flex justify-between items-start mb-5">
+                                                <div class="w-12 h-12 rounded-lg ${theme.bg} ${theme.border} border flex items-center justify-center">
+                                                    <i class="ph ${mod.icon} text-2xl ${theme.text}"></i>
+                                                </div>
+                                                <div class="flex items-center gap-1.5 px-2 py-1 rounded-md border text-[10px] font-semibold uppercase tracking-wider ${typeColor}">
+                                                    <i class="ph ${typeIcon}"></i>
+                                                    ${typeLabel}
+                                                </div>
                                             </div>
-                                            <div class="flex items-center gap-1.5 px-2 py-1 rounded-md border text-[10px] font-semibold uppercase tracking-wider ${typeColor}">
-                                                <i class="ph ${typeIcon}"></i>
-                                                ${typeLabel}
-                                            </div>
-                                        </div>
-                                        <h3 class="text-lg font-bold text-gray-100 mb-2 group-hover:text-indigo-400 transition-colors truncate">${mod.title}</h3>
-                                        <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${mod.desc}</p>
-                                    </a>
-                                </div>
-                            `;
+                                            <h3 class="text-lg font-bold text-gray-100 mb-2 group-hover:text-indigo-400 transition-colors truncate">${mod.title}</h3>
+                                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${mod.desc}</p>
+                                        </a>
+                                    </div>
+                                `;
                     grid.innerHTML += html;
                 });
             }
         }
 
-        
         // --- AUTH & MODAL ---
         function toggleAdmin() {
             if (isAdmin) {
@@ -349,7 +341,6 @@
 </html>
 
 
-
 <!--
 =======================================================================
 BACKUP DATA (ARCHIVED MODULES)
@@ -358,7 +349,7 @@ Copy and paste these into modules.json when you need them.
 
 
 
-  
+
   { "id": 48, "title": "Redis Cloud", "desc": "Caching Layer", "link": "#", "icon": "ph-lightning", "theme": 4 },
   { "id": 49, "title": "Firebase", "desc": "Backend as a Service", "link": "https://firebase.google.com", "icon": "ph-flame", "theme": 4 },
   { "id": 50, "title": "Supabase", "desc": "Open Source Backend", "link": "https://supabase.com", "icon": "ph-bolt", "theme": 1 },
