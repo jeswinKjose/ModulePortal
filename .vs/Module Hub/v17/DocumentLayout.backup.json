@@ -31,8 +31,7 @@
               "ViewState": "AgIAABwAAAAAAAAAAAAYwF0BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-03-26T04:42:24.372Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -42,7 +41,7 @@
               "RelativeDocumentMoniker": "modules.json",
               "ToolTip": "E:\\Module Hub\\modules.json",
               "RelativeToolTip": "modules.json",
-              "ViewState": "AgIAAIIBAAAAAAAAAAAuwIgBAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAGUBAAAAAAAAAAAuwHUBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-03-26T04:42:33.07Z",
               "IsPinned": true,

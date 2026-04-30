@@ -29,7 +29,7 @@
   {
     "id": 4,
     "title": "ALM",
-    "desc": "",
+    "desc": "Asset Liability Management",
     "link": "https://gen.mactech.net.in/ALM/",
     "icon": "ph-slack-logo",
     "theme": 3,
@@ -66,7 +66,7 @@
     "id": 8,
     "title": "Branch Ambience",
     "desc": "",
-    "link": "https://maafin.mactech.net.in/Branchambiencemodule/",
+    "link": "https://maafin.mactech.net.in/Branchambiencemodule/"
     "icon": "ph-amazon-logo",
     "theme": 3,
     "type": "internal"
@@ -83,7 +83,7 @@
   {
     "id": 10,
     "title": "AML",
-    "desc": "",
+    "desc": "Anti-Money Laundering",
     "link": "https://gen.mactech.net.in/AMLPortal",
     "icon": "ph-notebook",
     "theme": 4,
@@ -101,7 +101,7 @@
   {
     "id": 12,
     "title": "Expense Voyage",
-    "desc": "",
+    "desc": "Travelling Allowance (TA)",
     "link": "https://gen.mactech.net.in/ExpenseVoyage",
     "icon": "ph-chart-line-up",
     "theme": 2,
@@ -199,7 +199,7 @@
   },
   {
     "id": 23,
-    "title": "File Verification- SME",
+    "title": "File Verification SME",
     "desc": "",
     "link": "https://gen.mactech.net.in/OVERSIGHT_SME_MODULE/",
     "icon": "ph-reddit-logo",
@@ -208,7 +208,7 @@
   },
   {
     "id": 24,
-    "title": "Credit Monitoring - SME",
+    "title": "Credit Monitoring SME",
     "desc": "",
     "link": "https://gen.mactech.net.in/Oversight_Sme_CreditMonitor/",
     "icon": "ph-stack-overflow-logo",
@@ -373,7 +373,7 @@
   {
     "id": 43,
     "title": "EWS",
-    "desc": "",
+    "desc": "Early Warning Signals",
     "link": "https://maafin.mactech.net.in/EWS/",
     "icon": "ph-gear",
     "theme": 0,
