@@ -414,7 +414,17 @@
     "icon": "ph-database",
     "theme": 3,
     "type": "internal"
+  },
+  {
+    "id": 48,
+    "title": "SRMS",
+    "desc": "Sales Report & Monitorning System",
+    "link": "https://maafin.mactech.net.in/SRMS/",
+    "icon": "ph-lightning",
+    "theme": 4,
+    "type": "internal"
   }
+
 
 
 
