@@ -423,6 +423,24 @@
     "icon": "ph-lightning",
     "theme": 4,
     "type": "internal"
+  },
+  {
+    "id": 49,
+    "title": "Risk Register",
+    "desc": "Upcoming...",
+    "link": "#",
+    "icon": "ph-flame",
+    "theme": 4,
+    "type": "internal"
+  },
+  {
+    "id": 50,
+    "title": "Gold Loan Incentive",
+    "desc": "Upcoming...",
+    "link": "#",
+    "icon": "ph-bolt",
+    "theme": 1,
+    "type": "internal"
   }
 
 ]
