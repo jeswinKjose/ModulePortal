@@ -427,8 +427,8 @@
   {
     "id": 49,
     "title": "Risk Register",
-    "desc": "Upcoming...",
-    "link": "#",
+    "desc": "",
+    "link": "https://gen.mactech.net.in/MaafinRiskRegister/",
     "icon": "ph-flame",
     "theme": 4,
     "type": "internal"
